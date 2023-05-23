@@ -36,7 +36,7 @@ class Auth:
         detail=detail.NOT_VALIDATE,
         headers={"WWW-Authenticate": "Bearer"},
     )
-    r = redis.Redis(host=settings.redis_host, port=settings.redis_port, db=0)
+    r = redis.Redis(host=settings.redis_host, port=settings.redis_port, password=settings.redis_password, db=0)
 
     async def blocklist(self, token):
         payload = jwt.decode(token, self.SECRET_KEY, algorithms=[self.ALGORITHM])
